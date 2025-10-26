@@ -47,19 +47,18 @@ public class SubArraySumEquals_K {
 
         int count = 0;
         int prefSum = 0;
-        Map<Integer, Integer> map = new HashMap();
 
-        // setting up the 0 in the map
-        map.put(0, 1);
+        Map<Integer, Integer> map = new HashMap<>();
 
-        for (int el : arr) {
-            //add current element to prefix sum
-            prefSum = prefSum + el;
+        map.put(0, 1); // if target == prefixSum then pSum - target == 0 thats why we store it default
 
-            // calculate x - target 
-            int remove = prefSum - target;
+        for (int element : arr) {
 
-            // Add the no. of subarray to be removed
+            prefSum = prefSum + element;
+
+            int remove =  prefSum-target;
+
+            // first we add this no for the checking for future upcoming elements
             count = count + map.getOrDefault(remove, 0);
 
             // update count of prefix sum in map
