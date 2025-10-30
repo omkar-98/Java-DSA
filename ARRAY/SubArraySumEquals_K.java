@@ -58,7 +58,7 @@ public class SubArraySumEquals_K {
 
             int remove =  prefSum-target;
 
-            // first we add this no for the checking for future upcoming elements
+            // first we add this no. for the checking for future upcoming elements
             count = count + map.getOrDefault(remove, 0);
 
             // update count of prefix sum in map
