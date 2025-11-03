@@ -4,8 +4,10 @@ public class TwoSum {
     public static void main(String[] args) {
         int arr[] = { 1, 3, 9, 6, 10, 21 };
         int target = 13;
-        int ans[] = twoSum(arr, target);
-        System.out.println(Arrays.toString(ans));
+        // int ans[] = twoSum(arr, target);
+        // System.out.println(Arrays.toString(ans));
+        boolean result = twoSum(arr, target);
+        System.out.println(result);
     }
 
 
@@ -27,23 +29,47 @@ public class TwoSum {
     // }
 
 
+// *********** optimal approach  *****************
 
-    public static int[] twoSum(int nums[], int target){
-        int ans[] = new int[2];
-        Map<Integer,Integer>map = new HashMap<Integer,Integer>();
+    // public static int[] twoSum(int nums[], int target){
+    //     int ans[] = new int[2];
+    //     Map<Integer,Integer>map = new HashMap<Integer,Integer>();
 
-        for (int i = 0; i < nums.length; i++) {
-            int num = nums[i];
+    //     for (int i = 0; i < nums.length; i++) {
+    //         int num = nums[i];
             
-            int required = target - num;
+    //         int required = target - num;
 
-            if(map.containsKey(required)){
-                ans[0] = map.get(required);
-                ans[1] = i;
+    //         if(map.containsKey(required)){
+    //             ans[0] = map.get(required);
+    //             ans[1] = i;
+    //         }
+
+    //         map.put(nums[i], i);
+    //     }
+    //     return ans;
+    // }
+
+
+
+
+    public static boolean twoSum(int nums[] , int target){
+        Arrays.sort(nums);
+        int  start = 0;
+        int end = nums.length -1;
+
+        while(start < end){
+            if(nums[start] + nums[end] == target){
+              return true;
             }
-
-            map.put(nums[i], i);
+            else if ( nums[start] + nums[end] < target){
+                start++;
+            }
+            else{
+                end--;
+            }
         }
-        return ans;
+
+        return false;
     }
 }
