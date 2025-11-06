@@ -56,6 +56,8 @@ public class LongestSubArraySUm {
 
     public static void main(String[] args) {
         int nums[] = { 10, 5, 0, 0, 2,2,0,0 , 7, 1 };
-        System.out.println(longestSubArray(nums, 15));
+        int target = 15;
+        int result = longestSubArray(nums, target);
+        System.out.println(result);
     }
 }
