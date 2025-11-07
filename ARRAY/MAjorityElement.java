@@ -47,25 +47,80 @@ public class MAjorityElement {
     // return -1;
     // }
 
-    // Better Approach
+    // Better Approach***************************
 
-    public static int majorityElement(int[] arr) {
-        Arrays.sort(arr);
-        int freq = 1;
-        int ans = arr[0];
+    // public static int majorityElement(int[] arr) {
+    // Arrays.sort(arr); // because same elements comes after each other
+    // better for comarison
 
-        for (int i = 1; i < arr.length; i++) {
+    // int freq = 1;
+    // int ans = arr[0];
 
-            if (arr[i] == arr[i - 1]) {
-                freq++;
-            } else {
-                freq = 1;
-                ans = arr[i];
-            }
+    // for (int i = 1; i < arr.length; i++) {
 
-            if (freq > arr.length / 2)
-            return ans;
+    // if (arr[i] == arr[i - 1]) {// checking with previous element , if both same
+    // increase its occurance frequency
+    // freq++;
+    // }
+    // other wise reset frequency to 1 , because we found new element and now we are
+    // calculaing its frequency
+
+    // else {
+    // freq = 1;
+    // ans = arr[i]; // we are assign ans as new element as we are checking its
+    // frequency
+    // }
+
+    // if (freq > arr.length / 2){ // if frequency greater that half of lngth its
+    // majority element
+    // return ans;
+    // }
+    // }
+    // return -1;
+    // }
+
+    // ********************** Moore's Voting AlgoRithm **********************
+
+
+    public static int majorityElement(int[] nums) {
+
+    int candidate = 0;
+    int count = 0;
+
+    // Phase 1: Find a potential candidate using cancellation logic
+    for (int n : nums) {
+
+        // If count dropped to zero, whatever candidate we had is useless now.
+        // Assign current number as the new candidate.
+        if (count == 0) {
+            candidate = n;
         }
+
+        // If n supports the candidate, increase count,
+        // otherwise it cancels out one vote of the candidate.
+        if (n == candidate) {
+            count++;
+        } else {
+            count--;
+        }
+    }
+
+    // Phase 2: Verify because phase-1 can produce a wrong candidate
+    count = 0;
+    for (int n : nums) {
+        if (n == candidate) {
+            count++;
+        }
+    }
+
+    // If the candidate actually appears more than n/2 times, return it.
+    // Otherwise there IS NO majority element.
+    if (count > nums.length / 2) {
+        return candidate;
+    } else {
         return -1;
     }
+}
+
+
 }
