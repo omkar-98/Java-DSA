@@ -3,7 +3,7 @@ import java.util.*;
 public class MAjorityElement {
     public static void main(String[] args) {
 
-        int arr[] = { 1, 1, 1, 1, 1, 11, 1, 1, 111, 1, 111, 6, 2, 2 };
+        int arr[] = { 3, 13, 43, 3, 3, 3, 3, 12, 3 };
         int result = majorityElement(arr);
         System.out.println(result);
     }
@@ -28,24 +28,43 @@ public class MAjorityElement {
     // return -1;
     // }
 
-
-
-    
     // ***** better approach by checking frequency ******
 
-    public static int majorityElement(int nums[]) {
+    // public static int majorityElement(int nums[]) {
 
-        int n = nums.length;
-        Map<Integer, Integer> map = new HashMap<>();
+    // int n = nums.length;
+    // Map<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
-        }
+    // for (int i = 0; i < nums.length; i++) {
+    // map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+    // }
 
-        for (int key : map.keySet()) {
-            if (map.get(key) > n / 2) {
-                return key;
+    // for (int key : map.keySet()) {
+    // if (map.get(key) > n / 2) {
+    // return key;
+    // }
+    // }
+    // return -1;
+    // }
+
+    // Better Approach
+
+    public static int majorityElement(int[] arr) {
+        Arrays.sort(arr);
+        int freq = 1;
+        int ans = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+
+            if (arr[i] == arr[i - 1]) {
+                freq++;
+            } else {
+                freq = 1;
+                ans = arr[i];
             }
+
+            if (freq > arr.length / 2)
+            return ans;
         }
         return -1;
     }
