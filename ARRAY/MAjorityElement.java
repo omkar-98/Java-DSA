@@ -6,6 +6,13 @@ public class MAjorityElement {
         int arr[] = { 3, 13, 43, 3, 3, 3, 3, 12, 3 };
         int result = majorityElement(arr);
         System.out.println(result);
+
+        int x = 2; 
+        int y= 15;
+
+        if( y % 4 != 0){
+            System.out.println("true int not divisible of 4");          
+        }
     }
 
     // ********* Brute force aprrroach ******
