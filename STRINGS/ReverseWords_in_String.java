@@ -28,9 +28,7 @@ public class ReverseWords_in_String {
                 result += word;
             }
         }
-
         return result.substring(1);
-
     }
 
     // reverse a string
